@@ -17,7 +17,7 @@ class PostController extends Controller
     public function showList()
     {
 
-        $posts = Post::orderBy('updated_at', 'desc')->paginate(5);
+        $posts = Post::orderBy('updated_at', 'desc')->paginate(15);
 
         return view('post.list', 
         ['posts' => $posts]);
@@ -31,7 +31,9 @@ class PostController extends Controller
     public function showDetail($id)
     {
         $post = Post::find($id);
-        
+        // $comments = Comment::all();
+        $comments = Comment::where('post_id', $post->id)->first();
+        // dd($comments);
         
         if(is_null($post)) {
             \Session::flash('err_msg', 'データがありません。');
@@ -41,7 +43,12 @@ class PostController extends Controller
         return view('post.detail', 
         ['post' => $post]);
 
-        $comments = Comment::where('post_id', $post->id)->first();
+        
+        
+
+        return view('post.detail', 
+        ['comments' => $comments]);
+
 
     }
 

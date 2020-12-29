@@ -44,6 +44,7 @@
       <button type="submit" class="btn btn-primary">コメントする
       </button>
     </div>
+    
     <div class="mt-4">
       <button type="button" class="btn btn-primary" onclick="location.href='/'">一覧へ戻る
       </button>
